@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
-  modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt"],
+  modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt", "motion-v/nuxt"],
   pinia: {
     /**
      * Automatically add stores dirs to the auto imports. This is the same as
@@ -13,5 +13,17 @@ export default defineNuxtConfig({
      * @default `['stores']`
      */
     storesDirs: [],
+  },
+  app: {
+    head: {
+      title: "KVNG Art",
+      meta: [
+        {
+          name: "description",
+          content:
+            "2D and 3D architecture sketching, drawings, modeling, animation and renders. Portraits. Digital, ink, pencil hyper-realistic portraits of all sizes.",
+        },
+      ],
+    },
   },
 });

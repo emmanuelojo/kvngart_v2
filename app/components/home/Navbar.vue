@@ -2,7 +2,8 @@
   <nav class="relative w-full h-[65px] flex items-center justify-between gap-4 px-4 py-1">
     <div class="flex items-center gap-4">
       <NuxtLink to="/" class="text-xs font-semibold uppercase"> home </NuxtLink>
-      <NuxtLink to="/shop" class="text-xs font-semibold uppercase"> about </NuxtLink>
+      <NuxtLink to="/#about" class="text-xs font-semibold uppercase"> about </NuxtLink>
+      <NuxtLink to="/#services" class="text-xs font-semibold uppercase"> services </NuxtLink>
       <NuxtLink to="/shop" class="text-xs font-semibold uppercase"> portfolio </NuxtLink>
       <NuxtLink to="/#contact" class="text-xs font-semibold uppercase"> contact </NuxtLink>
       <NuxtLink to="/shop" class="text-xs font-semibold uppercase"> shop </NuxtLink>

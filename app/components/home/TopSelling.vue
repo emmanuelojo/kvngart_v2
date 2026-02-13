@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full flex flex-col gap-4 px-5">
-    <p>Top Selling</p>
+  <div class="w-full flex flex-col gap-4 px-5 py-10">
+    <h1 class="text-[#1c1c1c] text-[40px] text-center font-semibold uppercase">Top Selling</h1>
 
-    <div class="grid lg:grid-cols-3 gap-4">
+    <div class="grid lg:grid-cols-3 gap-4 lg:px-4">
       <div
         v-for="category in products.categories"
         :key="category.id"
