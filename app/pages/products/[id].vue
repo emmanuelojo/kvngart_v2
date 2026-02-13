@@ -1,5 +1,15 @@
 <template>
   <div class="px-4 pb-10 space-y-4">
+    <Head>
+      <Title> KVNG Art | {{ productDetails?.title ?? "" }} </Title>
+      <Meta name="description" :content="productDetails?.description ?? ''" />
+      <Meta
+        name="image"
+        :content="
+          productDetails?.images[0] ?? 'https://res.cloudinary.com/dj3yahj56/image/upload/v1771009443/logo_vumptz.jpg'
+        "
+      />
+    </Head>
     <div class="w-full flex flex-col lg:flex-row gap-4">
       <div class="w-full lg:w-1/2 h-[460px] lg:h-screen">
         <img
@@ -89,11 +99,11 @@ const selectedSize = ref(variations[0]);
 
 definePageMeta({
   layout: "products",
-  title: `${productDetails?.title ?? "KVNG Art"}`,
-  description: `${
-    productDetails?.description ??
-    "2D and 3D architecture sketching, drawings, modeling, animation and renders. Portraits. Digital, ink, pencil hyper-realistic portraits of all sizes."
-  }`,
+  // title: `${productDetails?.title ?? "KVNG Art"}`,
+  // description: `${
+  //   productDetails?.description ??
+  //   "2D and 3D architecture sketching, drawings, modeling, animation and renders. Portraits. Digital, ink, pencil hyper-realistic portraits of all sizes."
+  // }`,
 });
 </script>
 

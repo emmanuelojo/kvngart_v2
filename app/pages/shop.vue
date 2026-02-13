@@ -22,6 +22,11 @@ definePageMeta({
 });
 
 const products = useProductsStore();
+
+useHead({
+  title: "KVNG Art | Shop",
+  meta: [{ name: "description", content: "KVNG Art Merch" }],
+});
 </script>
 
 <style scoped>
