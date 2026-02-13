@@ -24,6 +24,18 @@ export default defineNuxtConfig({
             "2D and 3D architecture sketching, drawings, modeling, animation and renders. Portraits. Digital, ink, pencil hyper-realistic portraits of all sizes.",
         },
       ],
+      htmlAttrs: {
+        lang: "en",
+      },
+      link: [
+        {
+          rel: "icon",
+          type: "image/x-icon",
+          href: "https://res.cloudinary.com/dj3yahj56/image/upload/v1771009443/logo_vumptz.jpg",
+        },
+      ],
+      charset: "utf-16",
+      viewport: "width=device-width, initial-scale=1, maximum-scale=1",
     },
   },
 });

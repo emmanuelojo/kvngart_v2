@@ -78,10 +78,6 @@ import Divider from "~/components/Divider.vue";
 import ProductDetailsAccordion from "~/components/products/ProductDetailsAccordion.vue";
 import ProductsYouMayLike from "~/components/products/ProductsYouMayLike.vue";
 
-definePageMeta({
-  layout: "products",
-});
-
 const route = useRoute();
 const products = useProductsStore();
 const productId = +(route.params.id ?? 1);
@@ -90,6 +86,15 @@ const productDetails = products.getProduct(productId);
 
 const variations = ["XS", "S", "M", "L", "XL", "XXL"];
 const selectedSize = ref(variations[0]);
+
+definePageMeta({
+  layout: "products",
+  title: `${productDetails?.title ?? "KVNG Art"}`,
+  description: `${
+    productDetails?.description ??
+    "2D and 3D architecture sketching, drawings, modeling, animation and renders. Portraits. Digital, ink, pencil hyper-realistic portraits of all sizes."
+  }`,
+});
 </script>
 
 <style scoped></style>

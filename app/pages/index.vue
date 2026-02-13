@@ -14,6 +14,17 @@ import About from "~/components/home/About.vue";
 import Services from "~/components/home/Services.vue";
 import TopSelling from "~/components/home/TopSelling.vue";
 import Footer from "~/components/home/Footer.vue";
+
+useSeoMeta({
+  title: "KVNG Art",
+  ogTitle: "KVNG Art",
+  description:
+    "2D and 3D architecture sketching, drawings, modeling, animation and renders. Portraits. Digital, ink, pencil hyper-realistic portraits of all sizes.",
+  ogDescription:
+    "2D and 3D architecture sketching, drawings, modeling, animation and renders. Portraits. Digital, ink, pencil hyper-realistic portraits of all sizes.",
+  ogImage: "https://res.cloudinary.com/dj3yahj56/image/upload/v1771009443/logo_vumptz.jpg",
+  twitterCard: "summary_large_image",
+});
 </script>
 
 <style scoped></style>
