@@ -30,12 +30,12 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { motion, useScroll, useTransform } from "motion-v";
-import ServicesImage1 from "~/assets/images/services/archi.jpeg";
-import ServicesImage2 from "~/assets/images/services/branding.jpeg";
-import ServicesImage3 from "~/assets/images/services/graphics.jpeg";
-import ServicesImage4 from "~/assets/images/services/illustrations.jpeg";
-import ServicesImage5 from "~/assets/images/services/photo.jpeg";
-import ServicesImage6 from "~/assets/images/services/portraits.jpeg";
+import ServicesImage1 from "~/assets/images/services/archi.JPEG";
+import ServicesImage2 from "~/assets/images/services/branding.JPEG";
+import ServicesImage3 from "~/assets/images/services/graphics.JPEG";
+import ServicesImage4 from "~/assets/images/services/illustrations.JPEG";
+import ServicesImage5 from "~/assets/images/services/photo.JPEG";
+import ServicesImage6 from "~/assets/images/services/portraits.JPEG";
 
 /**
  * ==============   Data & Constants   ================
