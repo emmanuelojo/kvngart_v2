@@ -30,7 +30,12 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import { motion, useScroll, useTransform } from "motion-v";
-import BgImage from "~/assets/images/about/bg.jpg";
+import ServicesImage1 from "~/assets/images/services/archi.jpeg";
+import ServicesImage2 from "~/assets/images/services/branding.jpeg";
+import ServicesImage3 from "~/assets/images/services/graphics.jpeg";
+import ServicesImage4 from "~/assets/images/services/illustrations.jpeg";
+import ServicesImage5 from "~/assets/images/services/photo.jpeg";
+import ServicesImage6 from "~/assets/images/services/portraits.jpeg";
 
 /**
  * ==============   Data & Constants   ================
@@ -43,20 +48,17 @@ interface GalleryItem {
 }
 
 const items: GalleryItem[] = [
-  { id: 1, color: "#ff0088", label: "Architecture", image: BgImage },
-  { id: 2, color: "#dd00ee", label: "Portraits", image: BgImage },
-  { id: 3, color: "#9911ff", label: "Graphics", image: BgImage },
-  { id: 4, color: "#0d63f8", label: "Photography", image: BgImage },
-  { id: 5, color: "#0cdcf7", label: "Branding", image: BgImage },
-  { id: 6, color: "#ff0088", label: "Illustrations", image: BgImage },
+  { id: 1, color: "#ff0088", label: "Architecture", image: ServicesImage1 },
+  { id: 2, color: "#dd00ee", label: "Portraits", image: ServicesImage2 },
+  { id: 3, color: "#9911ff", label: "Graphics", image: ServicesImage3 },
+  { id: 4, color: "#0d63f8", label: "Photography", image: ServicesImage4 },
+  { id: 5, color: "#0cdcf7", label: "Branding", image: ServicesImage5 },
+  { id: 6, color: "#ff0088", label: "Illustrations", image: ServicesImage6 },
 ];
 
 const ITEM_WIDTH = 400;
 const GAP = 30;
 
-/**
- * ==============   Scroll Logic   ================
- */
 const containerRef = ref<HTMLElement | null>(null);
 
 // Initialize scroll tracking
@@ -121,7 +123,6 @@ h1 {
   flex-shrink: 0;
   width: 400px;
   height: 500px;
-  /* border-radius: 12px; */
   position: relative;
   overflow: hidden;
   background-image: var(--item-image);
@@ -164,7 +165,6 @@ h1 {
     height: 110vh;
   }
   .sticky-wrapper {
-    /* width: 280px; */
     height: 50vh;
     width: 100%;
   }

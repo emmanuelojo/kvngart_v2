@@ -3,37 +3,24 @@
     <div class="parallax-bg" :style="{ backgroundImage: `url(${BgImage})` }"></div>
 
     <div class="content-wrapper">
-      <p class="reveal-text">
+      <!-- <p class="reveal-text">
         <span>Our</span> <span>philosophy</span> <span>is</span> <span>built</span> <span>on</span>
         <span>quality</span> <span>and</span> <span>sustainability.</span>
+      </p> -->
+
+      <p class="reveal-text pb-10">(Architect & Visual Designer)</p>
+
+      <p class="reveal-text">
+        I am a creative entrepreneur, with skills in graphics design, architecture design and photography.
       </p>
+
+      <p class="reveal-text">I bring your ideas and briefs to life as beautiful and creative designs</p>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-import BgImage from "~/assets/images/about/bg.jpg";
-
-// const spans = document.querySelectorAll(".reveal-text span");
-
-// const observerOptions = {
-//   root: null,
-//   threshold: 1.0,
-//   rootMargin: "-20% 0px -40% 0px", // Triggers when text is in the center 40% of screen
-// };
-
-// const observer = new IntersectionObserver((entries) => {
-//   entries.forEach((entry) => {
-//     if (entry.isIntersecting) {
-//       entry.target.classList.add("active");
-//     } else {
-//       // Optional: remove if you want it to fade back to gray when scrolling up
-//       entry.target.classList.remove("active");
-//     }
-//   });
-// }, observerOptions);
-
-// spans.forEach((span) => observer.observe(span));
+import BgImage from "~/assets/images/about/profile.jpg";
 </script>
 
 <style scoped>
@@ -58,10 +45,10 @@ import BgImage from "~/assets/images/about/bg.jpg";
 .content-wrapper {
   position: relative;
   z-index: 2;
-  margin-top: -50vh; /* Pulls text up over the sticky background */
+  margin-top: -70vh; /* Pulls text up over the sticky background */
   padding: 100px 10%;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  place-content: center;
 }
 
 /* .reveal-text {
@@ -100,7 +87,7 @@ import BgImage from "~/assets/images/about/bg.jpg";
 }
 
 .reveal-text {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: bold;
   max-width: 800px;
   text-align: center;

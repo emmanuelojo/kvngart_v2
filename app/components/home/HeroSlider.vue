@@ -8,13 +8,11 @@
 
         <motion.div class="hero-content" :style="{ opacity, y }">
           <h1 class="impact">KVNG Art</h1>
+
+          <p>Digital architecture that rises from the void</p>
         </motion.div>
       </div>
     </section>
-
-    <!-- <section class="content-section">
-      <p class="big">Fin</p>
-    </section> -->
   </div>
 </template>
 
@@ -92,6 +90,14 @@ const y = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
 
 .hero-content h1 {
   font-size: clamp(30px, 25vw, 200px);
+  color: white;
+  margin: 0;
+  text-shadow: 0 4px 40px rgba(0, 0, 0, 0.6);
+  text-transform: uppercase;
+}
+
+.hero-content p {
+  font-size: clamp(12px, 25vw, 30px);
   color: white;
   margin: 0;
   text-shadow: 0 4px 40px rgba(0, 0, 0, 0.6);
