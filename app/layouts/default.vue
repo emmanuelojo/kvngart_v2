@@ -7,7 +7,13 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
 import Navbar from "~/components/home/Navbar.vue";
+import { fetchLocalCart } from "~/utils/localStorage";
+
+onMounted(() => {
+  fetchLocalCart();
+});
 </script>
 
 <style scoped></style>

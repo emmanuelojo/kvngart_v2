@@ -645,7 +645,7 @@ export const useProductsStore = defineStore("ProductsStore", {
     //   this.description = infos.description
     // },
 
-    getProduct(id: number) {
+    getProduct(id: number): Product | null {
       const foundProduct = this.products.filter((product) => product.id === id);
 
       if (foundProduct.length > 0) {

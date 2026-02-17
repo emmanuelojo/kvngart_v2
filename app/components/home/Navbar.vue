@@ -40,14 +40,29 @@
       >
         <Search :color="searchHovered ? '#daa520' : '#1c1c1c'" />
       </button>
-      <NuxtLink
-        to="/cart"
-        @mouseover="shopHovered = true"
-        @mouseout="shopHovered = false"
-        class="group text-xs font-semibold uppercase"
-      >
-        <ShoppingBag :color="shopHovered ? '#daa520' : '#1c1c1c'" />
-      </NuxtLink>
+      <div class="relative">
+        <NuxtLink
+          to="/cart"
+          @mouseover="shopHovered = true"
+          @mouseout="shopHovered = false"
+          class="group text-xs font-semibold uppercase"
+        >
+          <ShoppingBag :color="shopHovered ? '#daa520' : '#1c1c1c'" />
+        </NuxtLink>
+
+        <!-- <div
+          v-if="cartStore.cart.length > 0"
+          class="absolute top-0 -right-1 flex items-center justify-center min-w-[6px] h-[6px] rounded-md bg-[#1c1c1c]"
+        >
+      </div> -->
+
+        <div
+          v-if="cartStore.cart.length > 0"
+          class="absolute top-0 -right-1 flex items-center justify-center min-w-[16px] h-[16px] text-[6px] text-white rounded-md bg-[#1c1c1c]"
+        >
+          {{ cartStore.cart.length }}
+        </div>
+      </div>
     </div>
 
     <!-- <Presence> -->
@@ -85,6 +100,9 @@ import { ref, watch } from "vue";
 import { motion } from "motion-v";
 import { Search, ShoppingBag } from "lucide-vue-next";
 import Logo from "~/assets/images/blk.png";
+import { useCartStore } from "~/stores/cart";
+
+const cartStore = useCartStore();
 
 const isOpen = ref(false);
 const showSearchSuggestions = ref(false);

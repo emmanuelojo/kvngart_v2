@@ -26,11 +26,11 @@
           </h1>
           <h6 class="md:text-lg lg:text-xl text-[#1c1c1c]">$ {{ productDetails?.price }}</h6>
 
-          <div class="flex items-center gap-1">
+          <!-- <div class="flex items-center gap-1">
             <div class="min-w-2 w-2 h-2 bg-[#1c1c1c] rounded-full"></div>
 
             <p class="text-xs text-[#1c1c1c]">Only 10 units left</p>
-          </div>
+          </div> -->
         </div>
 
         <Divider />
@@ -44,7 +44,7 @@
             <button
               v-for="(variation, index) in variations"
               :key="variation"
-              @click="selectedSize = variation"
+              @click="addVariation(variation)"
               :style="{ transitionDelay: `${index * 30}ms` }"
               class="min-w-[50px] h-9 flex items-center justify-center text-xs border border-[#e8e8e8] hover:border-[#1c1c1c]"
               :class="selectedSize === variation ? 'text-white bg-[#1c1c1c]' : 'text-[#1c1c1c] bg-white'"
@@ -56,6 +56,7 @@
 
         <div>
           <button
+            @click="addToCart"
             class="group/btn overflow-hidden w-full h-10 flex items-center justify-center bg-[#1c1c1c] transition-colors"
           >
             <span class="relative h-[1.2em] overflow-hidden">
@@ -84,18 +85,58 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useProductsStore } from "~/stores/products";
+import { useCartStore } from "~/stores/cart";
 import Divider from "~/components/Divider.vue";
 import ProductDetailsAccordion from "~/components/products/ProductDetailsAccordion.vue";
 import ProductsYouMayLike from "~/components/products/ProductsYouMayLike.vue";
+import type { CartProduct, Product } from "~/types/Products";
 
 const route = useRoute();
 const products = useProductsStore();
+const cartStore = useCartStore();
 const productId = +(route.params.id ?? 1);
 
 const productDetails = products.getProduct(productId);
 
 const variations = ["XS", "S", "M", "L", "XL", "XXL"];
 const selectedSize = ref(variations[0]);
+const addedToCart = ref(false);
+const showQuantityButtons = ref(false);
+const productInCart = ref<CartProduct | null>(null);
+
+const checkIfProductIsInCart = () => {
+  const foundProduct = cartStore.cart.find((item: Product) => item.id === props.product.id);
+  if (foundProduct) {
+    productInCart.value = foundProduct;
+    showQuantityButtons.value = true;
+    addedToCart.value = true;
+  } else {
+    productInCart.value = null;
+    showQuantityButtons.value = false;
+    addedToCart.value = false;
+  }
+};
+
+const addVariation = (variation: string) => {
+  if (productDetails) {
+    selectedSize.value = variation;
+    cartStore.addProductToCart(productDetails, variation);
+
+    // checkIfProductIsInCart();
+  }
+};
+
+const addToCart = () => {
+  if (productDetails) {
+    cartStore.addProductToCart(productDetails);
+    addedToCart.value = true;
+
+    setTimeout(() => {
+      checkIfProductIsInCart();
+      showQuantityButtons.value = true;
+    }, 2000);
+  }
+};
 
 definePageMeta({
   layout: "products",

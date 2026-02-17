@@ -15,6 +15,7 @@
         <button
           v-for="(variation, index) in variations"
           :key="variation"
+          @click="addVariation(variation)"
           :style="{ transitionDelay: `${index * 30}ms` }"
           class="group/btn overflow-hidden min-w-[45px] h-9 flex items-center justify-center text-xs text-[#1c1c1c] bg-white border border-[#e8e8e8] hover:border-[#1c1c1c] transition-colors"
         >
@@ -36,19 +37,33 @@
       <p class="text-xs text-[#1c1c1c] line-clamp-1 flex-1">
         {{ product.title }}
       </p>
-      <p class="text-xs text-[#1c1c1c99] font-medium whitespace-nowrap">$129,984,000.00</p>
+      <p class="text-xs text-[#1c1c1c99] font-medium whitespace-nowrap">
+        ₦
+        {{ product.price.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}
+
+        <!-- $129,984,000.00 -->
+      </p>
     </NuxtLink>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useCartStore } from "~/stores/cart";
 import type { Product } from "~/types/Products";
 
-defineProps<{
+const cartStore = useCartStore();
+
+const props = defineProps<{
   product: Product;
 }>();
 
 const variations = ["XS", "S", "M", "L", "XL", "XXL"];
+
+const addVariation = (variation: string) => {
+  cartStore.addProductToCart(props.product, variation);
+
+  // checkIfProductIsInCart();
+};
 </script>
 
 <style scoped>

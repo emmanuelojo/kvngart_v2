@@ -37,9 +37,6 @@ import ServicesImage4 from "~/assets/images/services/illustrations.JPEG";
 import ServicesImage5 from "~/assets/images/services/photo.JPEG";
 import ServicesImage6 from "~/assets/images/services/portraits.JPEG";
 
-/**
- * ==============   Data & Constants   ================
- */
 interface GalleryItem {
   id: number;
   color: string;
@@ -75,12 +72,6 @@ const x = useTransform(scrollYProgress, [0, 1], [0, -totalDistance]);
 </script>
 
 <style scoped>
-/* Scoped styles ensure zero leakage to other Nuxt pages */
-#example {
-  height: auto;
-  overflow: visible;
-}
-
 h1 {
   /* font-size: clamp(36px, 8vw, 72px); */
   font-size: clamp(20px, 8vw, 40px);
