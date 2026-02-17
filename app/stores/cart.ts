@@ -4,6 +4,7 @@ import type { CartProduct, Product } from "~/types/Products";
 interface CartState {
   cart: CartProduct[];
   cartTotal: number;
+  showCartModal: boolean;
 }
 
 export const useCartStore = defineStore("cartStore", {
@@ -11,6 +12,7 @@ export const useCartStore = defineStore("cartStore", {
     return {
       cart: [],
       cartTotal: 0,
+      showCartModal: false,
     };
   },
   getters: {
@@ -32,88 +34,8 @@ export const useCartStore = defineStore("cartStore", {
       };
     },
   },
-  // actions: {
-  //   addProductToCart(product: Product | CartProduct) {
-  //     // Check if product already exists in cart
-  //     const existingCartItem = this.cart.find((item: CartProduct) => item.id === product.id);
 
-  //     if (existingCartItem) {
-  //       // If product exists, increment quantity
-  //       existingCartItem.quantity += 1;
-  //     } else {
-  //       // If product is not in cart, add it with quantity 1
-  //       this.cart.push({
-  //         ...product,
-  //         quantity: 1,
-  //       });
-  //     }
-
-  //     // Recalculate cart total
-  //     this.calculateCartTotal();
-  //   },
-
-  //   decreaseQuantity(productId: number) {
-  //     const index = this.cart.findIndex((item: CartProduct) => item.id === productId);
-
-  //     if (index !== -1) {
-  //       // If quantity is more than 1, decrease quantity
-  //       if (this.cart[index] && this.cart[index].quantity > 1) {
-  //         this.cart[index].quantity -= 1;
-  //       } else if (this.cart[index]) {
-  //         // If quantity is 1, remove the entire item from cart
-  //         this.cart.splice(index, 1);
-  //       }
-  //       // Recalculate cart total
-  //       this.calculateCartTotal();
-  //     }
-  //   },
-
-  //   removeProductFromCart(productId: number) {
-  //     const index = this.cart.findIndex((item: Product) => item.id === productId);
-
-  //     if (index !== -1) {
-  //       this.cart.splice(index, 1);
-
-  //       this.calculateCartTotal();
-  //     }
-  //   },
-
-  //   addProductVariation(product: Product | CartProduct, variation: string) {
-  //     const existingCartItem = this.cart.find((item: CartProduct) => item.id === product.id);
-
-  //     if (existingCartItem) {
-  //       // If product exists, add variation
-  //       existingCartItem.variation = variation;
-  //       console.log("existing method: ", variation);
-  //     } else {
-  //       // If product is not in cart, add it with quantity 1
-  //       this.cart.push({
-  //         ...product,
-  //         quantity: 1,
-  //         variation,
-  //       });
-  //       console.log("new method: ", variation);
-  //     }
-
-  //     this.calculateCartTotal();
-  //   },
-
-  //   calculateCartTotal() {
-  //     localStorage.setItem("cart", JSON.stringify(this.cart));
-  //     this.cartTotal = this.cart.reduce((total: number, item: CartProduct) => {
-  //       return total + item.price * item.quantity;
-  //     }, 0);
-  //   },
-
-  //   clearCart() {
-  //     this.cart = [];
-  //     this.cartTotal = 0;
-  //   },
-  // },
   actions: {
-    setCart(cartItems: CartProduct[]) {
-      this.cart = cartItems;
-    },
     addProductToCart(product: Product, variation: string = "") {
       // 1. Find item where BOTH id and variation match
       const existingCartItem = this.cart.find((item) => item.id === product.id && item.variation === variation);
@@ -168,6 +90,25 @@ export const useCartStore = defineStore("cartStore", {
       this.cartTotal = this.cart.reduce((total: number, item: CartProduct) => {
         return total + item.price * item.quantity;
       }, 0);
+    },
+
+    setCart(cartItems: CartProduct[]) {
+      this.cart = cartItems;
+      this.calculateCartTotal();
+    },
+
+    clearCart() {
+      this.cart = [];
+      this.cartTotal = 0;
+      this.calculateCartTotal();
+    },
+
+    toggleCartModal(payload?: boolean) {
+      if (payload) {
+        this.showCartModal = payload;
+      }
+
+      this.showCartModal = !this.showCartModal;
     },
   },
 });

@@ -25,6 +25,8 @@ useSeoMeta({
   ogImage: "https://res.cloudinary.com/dj3yahj56/image/upload/v1771009443/logo_vumptz.jpg",
   twitterCard: "summary_large_image",
 });
+
+const runtimeConfig = useRuntimeConfig();
 </script>
 
 <style scoped></style>

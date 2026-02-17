@@ -105,15 +105,17 @@ const showQuantityButtons = ref(false);
 const productInCart = ref<CartProduct | null>(null);
 
 const checkIfProductIsInCart = () => {
-  const foundProduct = cartStore.cart.find((item: Product) => item.id === props.product.id);
-  if (foundProduct) {
-    productInCart.value = foundProduct;
-    showQuantityButtons.value = true;
-    addedToCart.value = true;
-  } else {
-    productInCart.value = null;
-    showQuantityButtons.value = false;
-    addedToCart.value = false;
+  if (productDetails) {
+    const foundProduct = cartStore.cart.find((item: Product) => item.id === productDetails.id);
+    if (foundProduct) {
+      productInCart.value = foundProduct;
+      showQuantityButtons.value = true;
+      addedToCart.value = true;
+    } else {
+      productInCart.value = null;
+      showQuantityButtons.value = false;
+      addedToCart.value = false;
+    }
   }
 };
 

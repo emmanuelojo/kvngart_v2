@@ -2,6 +2,17 @@
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
+  runtimeConfig: {
+    public: {
+      paystackPublicKey: process.env.PAYSTACK_PUBLIC_KEY,
+      // gtmContainerId: GlobalSettings[appEnv].gtmContainerId,
+      // gtmDebug: GlobalSettings[appEnv].gtmDebug,
+      // gtmEnabled: GlobalSettings[appEnv].gtmEnabled,
+      // baseUrl: process.env.BASE_URL,
+      // firebaseApiKey: process.env.FIREBASE_API_KEY,
+      // googleApiKey: process.env.GOOGLE_API_KEY,
+    },
+  },
   modules: ["@nuxtjs/tailwindcss", "@pinia/nuxt", "motion-v/nuxt"],
   pinia: {
     /**

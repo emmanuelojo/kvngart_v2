@@ -41,27 +41,25 @@
         <Search :color="searchHovered ? '#daa520' : '#1c1c1c'" />
       </button>
       <div class="relative">
-        <NuxtLink
-          to="/cart"
+        <button
+          @click="handleToggleCart"
           @mouseover="shopHovered = true"
           @mouseout="shopHovered = false"
-          class="group text-xs font-semibold uppercase"
+          class="group text-xs font-semibold uppercase cursor-pointer"
         >
           <ShoppingBag :color="shopHovered ? '#daa520' : '#1c1c1c'" />
-        </NuxtLink>
-
-        <!-- <div
-          v-if="cartStore.cart.length > 0"
-          class="absolute top-0 -right-1 flex items-center justify-center min-w-[6px] h-[6px] rounded-md bg-[#1c1c1c]"
-        >
-      </div> -->
+        </button>
 
         <div
           v-if="cartStore.cart.length > 0"
-          class="absolute top-0 -right-1 flex items-center justify-center min-w-[16px] h-[16px] text-[6px] text-white rounded-md bg-[#1c1c1c]"
+          class="absolute top-0 -right-1 flex items-center justify-center min-w-[6px] h-[6px] rounded-md bg-[#daa520]"
+        ></div>
+        <!-- <div
+          v-if="cartStore.cart.length > 0"
+          class="absolute top-0 -right-1 flex items-center justify-center min-w-[16px] h-[16px] text-[6px] text-white rounded-md bg-[#daa520]"
         >
           {{ cartStore.cart.length }}
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -113,13 +111,17 @@ const navLinks = [
   { name: "home", path: "/" },
   { name: "about", path: "/#about" },
   { name: "services", path: "/#services" },
-  { name: "portfolio", path: "/shop" },
+  { name: "portfolio", path: "/#portfolio" },
   { name: "contact", path: "/#contact" },
   { name: "shop", path: "/shop" },
 ];
 
 const handleShowSearchSuggestions = () => {
   showSearchSuggestions.value = !showSearchSuggestions.value;
+};
+
+const handleToggleCart = () => {
+  cartStore.toggleCartModal();
 };
 
 watch(isOpen, (val) => {
