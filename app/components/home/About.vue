@@ -3,11 +3,6 @@
     <div class="parallax-bg" :style="{ backgroundImage: `url(${BgImage})` }"></div>
 
     <div class="content-wrapper">
-      <!-- <p class="reveal-text">
-        <span>Our</span> <span>philosophy</span> <span>is</span> <span>built</span> <span>on</span>
-        <span>quality</span> <span>and</span> <span>sustainability.</span>
-      </p> -->
-
       <p class="reveal-text pb-10">(Architect & Visual Designer)</p>
 
       <p class="reveal-text">
@@ -112,6 +107,18 @@ import BgImage from "~/assets/images/about/profile.jpg";
   }
   to {
     background-position: 0% 0%;
+  }
+}
+
+@media (max-width: 768px) {
+  .reveal-text:nth-child(1) {
+    font-size: 1.7rem;
+  }
+  .reveal-text:nth-child(2) {
+    font-size: 1.2rem;
+  }
+  .reveal-text:nth-child(3) {
+    font-size: 1.2rem;
   }
 }
 </style>

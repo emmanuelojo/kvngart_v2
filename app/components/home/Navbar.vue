@@ -50,16 +50,12 @@
           <ShoppingBag :color="shopHovered ? '#daa520' : '#1c1c1c'" />
         </button>
 
-        <div
-          v-if="cartStore.cart.length > 0"
-          class="absolute top-0 -right-1 flex items-center justify-center min-w-[6px] h-[6px] rounded-md bg-[#daa520]"
-        ></div>
-        <!-- <div
-          v-if="cartStore.cart.length > 0"
-          class="absolute top-0 -right-1 flex items-center justify-center min-w-[16px] h-[16px] text-[6px] text-white rounded-md bg-[#daa520]"
-        >
-          {{ cartStore.cart.length }}
-        </div> -->
+        <div v-if="cartStore.cart.length > 0" class="absolute top-0 -right-1">
+          <span class="relative flex size-[10px]">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#daa52099] opacity-75"></span>
+            <span class="relative inline-flex size-[10px] rounded-full bg-[#daa520]"></span>
+          </span>
+        </div>
       </div>
     </div>
 

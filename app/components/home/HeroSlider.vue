@@ -1,9 +1,9 @@
 <template>
-  <div id="example">
+  <div id="hero">
     <section ref="containerRef" class="hero-section">
       <div class="hero-sticky">
         <motion.div class="hero-background" :style="{ scale, filter: `blur(${blur})` }">
-          <img :src="BgImage" alt="Prague" />
+          <img :src="BgImage" alt="KVNG Art" class="text-xs" />
         </motion.div>
 
         <motion.div class="hero-content" :style="{ opacity, y }">
@@ -45,7 +45,7 @@ const y = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
 </script>
 
 <style scoped>
-#example {
+#hero {
   width: 100%;
   height: auto;
   overflow: visible;
@@ -113,6 +113,16 @@ const y = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
   justify-content: center;
   align-items: center;
   padding: 100px 20px;
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: clamp(14px, 25vw, 70px);
+  }
+
+  .hero-content p {
+    font-size: clamp(12px, 25vw, 16px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

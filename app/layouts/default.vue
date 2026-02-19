@@ -3,6 +3,7 @@
     <Navbar />
     <Cart v-if="cartStore.showCartModal" />
     <slot />
+    <ScrollToTop :threshold="700" />
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import { onMounted } from "vue";
 import Navbar from "~/components/home/Navbar.vue";
 import Cart from "~/components/products/Cart.vue";
+import ScrollToTop from "~/components/ScrollToTop.vue";
 import { fetchLocalCart } from "~/utils/localStorage";
 import { useCartStore } from "~/stores/cart";
 

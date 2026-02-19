@@ -6,7 +6,7 @@
         :animate="{ opacity: 1, backdropFilter: 'blur(8px)' }"
         :exit="{ opacity: 0, backdropFilter: 'blur(0px)' }"
         class="absolute inset-0 bg-black/30 cursor-pointer"
-        @click="cartStore.toggleCartModal"
+        @click="handleToggleCartModal"
       />
 
       <motion.div
@@ -17,7 +17,7 @@
         class="relative w-full md:w-[50vw] lg:w-[40vw] h-full bg-white shadow-2xl flex flex-col p-6 overflow-y-auto"
       >
         <div class="relative flex items-center justify-between mb-8">
-          <button @click="cartStore.toggleCartModal" class="p-2 hover:bg-gray-100 rounded-full">
+          <button @click="handleToggleCartModal" class="p-2 hover:bg-gray-100 rounded-full">
             <X />
           </button>
 
@@ -31,7 +31,7 @@
           </button>
         </div>
 
-        <div class="w-full flex-1 overflow-y-auto py-4 space-y-4">
+        <div class="w-full flex-1 overflow-y-auto py-4 pr-4 space-y-4">
           <CartItem v-for="product in cartStore.cart" :key="product.id" :product="product" />
 
           <p v-if="cartStore.cartItemCount === 0" class="text-[#1c1c1c99] text-center">No item in your cart</p>
@@ -67,6 +67,10 @@ const runtimeConfig = useRuntimeConfig();
 
 const showEmail = ref(false);
 const email = ref("");
+
+const handleToggleCartModal = () => {
+  cartStore.toggleCartModal();
+};
 
 const checkout = () => {
   const items = cartStore.cart.map((item: CartProduct) => ({
