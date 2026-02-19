@@ -3,6 +3,9 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   runtimeConfig: {
+    // Private keys (Server-side only)
+    paystackSecretKey: process.env.PAYSTACK_SECRET_KEY,
+    resendApiKey: process.env.RESEND_API_KEY,
     public: {
       paystackPublicKey: process.env.PAYSTACK_PUBLIC_KEY,
       // gtmContainerId: GlobalSettings[appEnv].gtmContainerId,
