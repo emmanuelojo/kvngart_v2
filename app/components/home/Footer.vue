@@ -1,5 +1,5 @@
 <template>
-  <section id="footer" class="max-w-[1440px] flex justify-center mx-auto">
+  <section id="contact" class="max-w-[1440px] flex justify-center mx-auto">
     <div class="w-full bg-[#1c1c1c] px-4 lg:px-12 py-3 bottom-0">
       <!-- <p class="text-xs md:text-base flex text-center justify-center items-center gap-2">
         <span class="mx-1"> Copyright <i class="fa fa-copyright"></i> {{ year }} </span>
