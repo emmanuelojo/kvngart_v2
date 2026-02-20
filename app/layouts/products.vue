@@ -5,7 +5,9 @@
     <SearchProducts v-if="productsStore.showSearchModal" />
     <slot />
     <ScrollToTop />
-    <Footer />
+    <div class="mt-10">
+      <Footer />
+    </div>
   </div>
 </template>
 

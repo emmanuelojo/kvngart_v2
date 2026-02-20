@@ -23,7 +23,7 @@
             <input
               type="text"
               v-model="productsStore.searchTerm"
-              class="flex flex-1 h-10 border border-none outline-none"
+              class="flex flex-1 h-10 text-[#1c1c1c] placeholder:text-[#1c1c1c99] border border-none outline-none"
             />
 
             <button @click="handleToggleSearchModal" class="p-2 hover:bg-gray-100 rounded-full">
@@ -34,11 +34,17 @@
           <Divider :height="2" />
         </div>
 
-        <!-- <div class="w-full flex-1 overflow-y-auto py-4 pr-4 space-y-4">
-          <CartItem v-for="product in cartStore.cart" :key="product.id" :product="product" />
-
-          <p v-if="cartStore.cartItemCount === 0" class="text-[#1c1c1c99] text-center">No match found</p>
-        </div> -->
+        <div class="w-full flex-1 overflow-y-auto py-4 pr-4 space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <SearchResultItem
+              v-for="product in productsStore.filteredProducts"
+              :key="product.id"
+              :product="product"
+              size="small"
+            />
+          </div>
+          <p v-if="productsStore.filteredProducts.length === 0" class="text-[#1c1c1c99] text-center">No match found</p>
+        </div>
       </motion.div>
     </div>
   </div>
@@ -49,6 +55,7 @@ import { watch, onUnmounted, ref } from "vue";
 import { motion } from "motion-v";
 import { useProductsStore } from "~/stores/products";
 import { X, Search } from "lucide-vue-next";
+import SearchResultItem from "./SearchResultItem.vue";
 
 const productsStore = useProductsStore();
 

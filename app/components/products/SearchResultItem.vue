@@ -37,6 +37,15 @@
         </button>
       </div>
     </div>
+
+    <div class="py-4 px-1 space-y-1">
+      <NuxtLink :href="`/products/${product.id}`">
+        <h1 class="text-xs text-[#1c1c1c] line-clamp-2">
+          {{ product.title }}
+        </h1>
+      </NuxtLink>
+      <h6 class="text-xs text-[#1c1c1c99]">₦{{ product.price }}</h6>
+    </div>
   </div>
 </template>
 
@@ -82,6 +91,6 @@ const addVariation = (variation: string) => {
 }
 
 .small {
-  @apply w-full h-[198px] lg:h-[312px];
+  @apply w-full h-[198px] md:h-[312px];
 }
 </style>

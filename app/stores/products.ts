@@ -642,6 +642,14 @@ export const useProductsStore = defineStore("productsStore", {
     };
   },
 
+  getters: {
+    filteredProducts(state) {
+      if (!state.searchTerm.trim()) return state.products;
+
+      return state.products.filter((product) => product.title.toLowerCase().includes(state.searchTerm.toLowerCase()));
+    },
+  },
+
   actions: {
     // async fetch () {
     //   const infos = await $fetch('https://api.nuxt.com/modules/pinia')
@@ -666,10 +674,6 @@ export const useProductsStore = defineStore("productsStore", {
       }
 
       this.showSearchModal = !this.showSearchModal;
-    },
-
-    setSearchTerm(payload: string) {
-      this.searchTerm = payload;
     },
   },
 });
