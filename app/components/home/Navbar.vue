@@ -33,7 +33,7 @@
 
     <div class="flex items-center gap-4">
       <button
-        @click="handleShowSearchSuggestions"
+        @click="handleToggleSearch"
         @mouseover="searchHovered = true"
         @mouseout="searchHovered = false"
         class="cursor-pointer"
@@ -95,11 +95,12 @@ import { motion } from "motion-v";
 import { Search, ShoppingBag } from "lucide-vue-next";
 import Logo from "~/assets/images/blk.png";
 import { useCartStore } from "~/stores/cart";
+import { useProductsStore } from "~/stores/products";
 
 const cartStore = useCartStore();
+const productsStore = useProductsStore();
 
 const isOpen = ref(false);
-const showSearchSuggestions = ref(false);
 const searchHovered = ref(false);
 const shopHovered = ref(false);
 
@@ -112,8 +113,8 @@ const navLinks = [
   { name: "shop", path: "/shop" },
 ];
 
-const handleShowSearchSuggestions = () => {
-  showSearchSuggestions.value = !showSearchSuggestions.value;
+const handleToggleSearch = () => {
+  productsStore.toggleSearchModal();
 };
 
 const handleToggleCart = () => {

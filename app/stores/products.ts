@@ -4,9 +4,11 @@ interface ProductsStoreState {
   products: Product[];
   product: Product | null;
   categories: Category[];
+  showSearchModal: boolean;
+  searchTerm: string;
 }
 
-export const useProductsStore = defineStore("ProductsStore", {
+export const useProductsStore = defineStore("productsStore", {
   state: (): ProductsStoreState => {
     return {
       products: [
@@ -635,6 +637,8 @@ export const useProductsStore = defineStore("ProductsStore", {
           updatedAt: "2026-02-08T12:47:13.000Z",
         },
       ],
+      showSearchModal: false,
+      searchTerm: "",
     };
   },
 
@@ -654,6 +658,18 @@ export const useProductsStore = defineStore("ProductsStore", {
       }
 
       return null;
+    },
+
+    toggleSearchModal(payload?: boolean) {
+      if (payload) {
+        this.showSearchModal = payload;
+      }
+
+      this.showSearchModal = !this.showSearchModal;
+    },
+
+    setSearchTerm(payload: string) {
+      this.searchTerm = payload;
     },
   },
 });

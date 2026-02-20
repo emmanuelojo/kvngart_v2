@@ -108,7 +108,7 @@ const productId = +(route.params.id ?? 1);
 const productDetails = products.getProduct(productId);
 
 const variations = ["XS", "S", "M", "L", "XL", "XXL"];
-const selectedSize = ref(variations[0]);
+const selectedSize = ref(variations ? variations[0] : "");
 const addedToCart = ref(false);
 const showAnimation = ref(false);
 const showAnimationLoader = ref(false);
@@ -139,7 +139,7 @@ const addVariation = (variation: string) => {
 
 const addToCart = () => {
   if (productDetails) {
-    cartStore.addProductToCart(productDetails);
+    cartStore.addProductToCart(productDetails, selectedSize.value);
     addedToCart.value = true;
     showAnimation.value = true;
     showAnimationLoader.value = true;
