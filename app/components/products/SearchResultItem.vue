@@ -1,13 +1,12 @@
 <template>
   <div class="relative w-full h-auto overflow-hidden cursor-pointer">
     <div class="relative group bg-[#f7f6f9] overflow-hidden" :class="size">
-      <NuxtLink :href="`/products/${product.id}`">
-        <img
-          :src="product.images[0]"
-          :alt="`${product.title} image`"
-          class="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105 bg-gray-200"
-        />
-      </NuxtLink>
+      <img
+        :src="product.images[0]"
+        :alt="`${product.title} image`"
+        @click="handleViewProductDetails"
+        class="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105 bg-gray-200"
+      />
 
       <div
         class="absolute bottom-0 left-0 right-0 p-4 flex flex-wrap items-center gap-1 transition-transform duration-300 ease-out translate-y-full group-hover:translate-y-0 bg-gradient-to-t from-black/5 to-transparent"
@@ -39,11 +38,9 @@
     </div>
 
     <div class="py-4 px-1 space-y-1">
-      <NuxtLink :href="`/products/${product.id}`">
-        <h1 class="text-xs text-[#1c1c1c] line-clamp-2">
-          {{ product.title }}
-        </h1>
-      </NuxtLink>
+      <h1 @click="handleViewProductDetails" class="text-xs text-[#1c1c1c] line-clamp-2">
+        {{ product.title }}
+      </h1>
       <h6 class="text-xs text-[#1c1c1c99]">₦{{ product.price }}</h6>
     </div>
   </div>
@@ -52,6 +49,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useCartStore } from "~/stores/cart";
+import { useProductsStore } from "~/stores/products";
 import type { Product } from "~/types/Products";
 
 interface Props {
@@ -64,6 +62,8 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const cartStore = useCartStore();
+const productsStore = useProductsStore();
+const router = useRouter();
 
 const variations = ["XS", "S", "M", "L", "XL", "XXL"];
 
@@ -77,6 +77,11 @@ const addVariation = (variation: string) => {
   setTimeout(() => {
     activeVariation.value = null;
   }, 2000);
+};
+
+const handleViewProductDetails = () => {
+  productsStore.toggleSearchModal();
+  router.push(`/products/${props.product.id}`);
 };
 </script>
 
