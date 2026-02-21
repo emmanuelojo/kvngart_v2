@@ -45,7 +45,38 @@
               {{ cartStore.cartTotal.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) }}
             </p>
           </div>
-          <button @click="checkout" class="w-full bg-black text-white py-3 font-medium">Checkout</button>
+
+          <div class="space-y-4">
+            <div v-if="showEmail" class="mt-4 flex flex-col gap-3">
+              <div class="flex flex-col gap-1">
+                <p class="text-[#1c1c1c] text-xs lg:text-sm">Email</p>
+                <input
+                  type="email"
+                  placeholder="john@mail.com"
+                  v-model="email"
+                  required
+                  class="w-full h-10 px-2 py-1 border border-[#1c1c1c] outline-none"
+                />
+              </div>
+
+              <button
+                @click="checkout"
+                :disabled="!isEmailValid"
+                class="w-full py-3 font-medium"
+                :class="
+                  !isEmailValid
+                    ? 'text-[#FFFFFF80] bg-[#00000050] cursor-not-allowed'
+                    : 'text-white bg-black cursor-pointer'
+                "
+              >
+                Checkout
+              </button>
+            </div>
+
+            <button v-else @click="showEmail = true" class="w-full bg-black text-white py-3 font-medium">
+              Proceed
+            </button>
+          </div>
         </div>
       </motion.div>
     </div>
@@ -53,12 +84,13 @@
 </template>
 
 <script setup lang="ts">
-import { watch, onUnmounted, ref } from "vue";
+import { watch, onUnmounted, ref, computed } from "vue";
 import { motion } from "motion-v";
 import { useCartStore } from "~/stores/cart";
 import { X, ShoppingBag } from "lucide-vue-next";
 import CartItem from "./CartItem.vue";
 import type { CartProduct } from "~/types/Products";
+import { isValidEmail } from "~/utils/cart";
 
 const cartStore = useCartStore();
 
@@ -67,6 +99,8 @@ const runtimeConfig = useRuntimeConfig();
 
 const showEmail = ref(false);
 const email = ref("");
+
+const isEmailValid = computed(() => isValidEmail(email.value));
 
 const handleToggleCartModal = () => {
   cartStore.toggleCartModal();
@@ -88,7 +122,7 @@ const checkout = () => {
 
   $paystack.newTransaction({
     key: runtimeConfig.public.paystackPublicKey,
-    email: "john1@mailinator.com", //email.value ?? "john1@mailinator.com",
+    email: email.value,
     amount: cartStore.cartTotal * 100,
     // currency:cartStore.currency,
     metadata: {
