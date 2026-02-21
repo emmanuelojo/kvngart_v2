@@ -668,6 +668,36 @@ export const useProductsStore = defineStore("productsStore", {
       return null;
     },
 
+    getRecommendedProducts(product: Product, limit: number = 4): Product[] {
+      // Exclude current product if provided
+      const filteredProducts = this.products.filter((p) => p.id !== product.id);
+
+      // 1️⃣ First: get same-category products
+      const sameCategory = filteredProducts.filter((p) => p.category.name === product.category.name);
+
+      // Shuffle helper
+      const shuffle = (array: Product[]): Product[] => {
+        return [...array].sort(() => Math.random() - 0.5);
+      };
+
+      let recommendations = shuffle(sameCategory).slice(0, limit);
+
+      // 2️⃣ If not enough, fill with random other products
+      if (recommendations.length < limit) {
+        const remainingNeeded = limit - recommendations.length;
+
+        const otherProducts = filteredProducts.filter(
+          (p) => p.category.name !== product.category.name && !recommendations.some((r) => r.id === p.id),
+        );
+
+        const randomOthers = shuffle(otherProducts).slice(0, remainingNeeded);
+
+        recommendations = [...recommendations, ...randomOthers];
+      }
+
+      return recommendations;
+    },
+
     toggleSearchModal(payload?: boolean) {
       if (payload) {
         this.showSearchModal = payload;

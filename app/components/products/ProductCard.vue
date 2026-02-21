@@ -1,7 +1,7 @@
 <template>
   <div class="relative w-full h-auto overflow-hidden cursor-pointer">
     <div class="relative group bg-[#f7f6f9] overflow-hidden" :class="size">
-      <NuxtLink :href="`/products/${product.id}`">
+      <NuxtLink :href="`/products/${product.id}`" :title="product.title">
         <img
           :src="product.images[0]"
           :alt="`${product.title} image`"

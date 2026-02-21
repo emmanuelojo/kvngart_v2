@@ -38,7 +38,7 @@
         @mouseout="searchHovered = false"
         class="cursor-pointer"
       >
-        <Search :color="searchHovered ? '#daa520' : '#1c1c1c'" />
+        <Search :color="searchHovered ? '#daa520' : '#1c1c1c'" :size="20" />
       </button>
       <div class="relative">
         <button
@@ -47,7 +47,7 @@
           @mouseout="shopHovered = false"
           class="group text-xs font-semibold uppercase cursor-pointer"
         >
-          <ShoppingBag :color="shopHovered ? '#daa520' : '#1c1c1c'" />
+          <ShoppingBag :color="shopHovered ? '#daa520' : '#1c1c1c'" :size="20" />
         </button>
 
         <div v-if="cartStore.cart.length > 0" class="absolute top-0 -right-1">

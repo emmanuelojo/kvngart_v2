@@ -86,7 +86,8 @@
       </div>
     </div>
 
-    <ProductsYouMayLike />
+    <!-- NB: use category to recommend. if not enough products, randomize to fill up space -->
+    <ProductsYouMayLike v-if="productDetails" :product="productDetails" />
   </div>
 </template>
 

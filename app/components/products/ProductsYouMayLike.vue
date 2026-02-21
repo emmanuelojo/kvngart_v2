@@ -7,16 +7,28 @@
     </div>
 
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      <ProductCard v-for="product in products.products.slice(0, 4)" :key="product.id" :product="product" />
+      <ProductCard v-for="product in recommendedProducts" :key="product.id" :product="product" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { onMounted, ref } from "vue";
 import ProductCard from "~/components/products/ProductCard.vue";
 import { useProductsStore } from "~/stores/products";
+import type { Product } from "~/types/Products";
+
+const props = defineProps<{
+  product: Product;
+}>();
 
 const products = useProductsStore();
+
+const recommendedProducts = ref<Product[]>([]);
+
+onMounted(() => {
+  recommendedProducts.value = products.getRecommendedProducts(props.product);
+});
 </script>
 
 <style scoped></style>

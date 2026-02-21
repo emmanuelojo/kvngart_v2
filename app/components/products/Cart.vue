@@ -87,7 +87,7 @@ const checkout = () => {
     .join("\n");
 
   $paystack.newTransaction({
-    key: runtimeConfig.public.paystackPublicKey, // "pk_test_d47b171cd7150047dea445641715c69225e830a4", // runtimeConfig.paystackPublicKey,
+    key: runtimeConfig.public.paystackPublicKey,
     email: "john1@mailinator.com", //email.value ?? "john1@mailinator.com",
     amount: cartStore.cartTotal * 100,
     // currency:cartStore.currency,

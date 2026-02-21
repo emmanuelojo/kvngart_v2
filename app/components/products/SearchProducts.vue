@@ -18,7 +18,7 @@
       >
         <div class="space-y-4 mb-8">
           <div class="relative flex items-center justify-between gap-4">
-            <Search color="#1c1c1c" :size="14" />
+            <Search color="#1c1c1c" :size="16" />
 
             <input
               type="text"
@@ -27,7 +27,7 @@
             />
 
             <button @click="handleToggleSearchModal" class="p-2 hover:bg-gray-100 rounded-full">
-              <X />
+              <X color="#1c1c1c" :size="16" />
             </button>
           </div>
 
