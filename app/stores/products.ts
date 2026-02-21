@@ -644,7 +644,7 @@ export const useProductsStore = defineStore("productsStore", {
 
   getters: {
     filteredProducts(state) {
-      if (!state.searchTerm.trim()) return state.products;
+      if (!state.searchTerm.trim()) return []; //state.products;
 
       return state.products.filter((product) => product.title.toLowerCase().includes(state.searchTerm.toLowerCase()));
     },

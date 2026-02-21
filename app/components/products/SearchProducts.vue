@@ -43,7 +43,12 @@
               size="small"
             />
           </div>
-          <p v-if="productsStore.filteredProducts.length === 0" class="text-[#1c1c1c99] text-center">No match found</p>
+          <p
+            v-if="productsStore.filteredProducts.length === 0 && productsStore.searchTerm.length > 0"
+            class="text-[#1c1c1c99] text-center"
+          >
+            No match found
+          </p>
         </div>
       </motion.div>
     </div>
